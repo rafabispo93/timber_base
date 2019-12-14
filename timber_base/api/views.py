@@ -1,19 +1,29 @@
 from .models import Customer
 from .serializers import CustomerSerializer
 
+from django.http import Http404
+from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import status  
 
-class CustomerList(APIView):
+class CustomerList(generics.ListCreateAPIView):
     """
-    View all customers.
+    Lists and creates customers.
     """
-    def get(self, request, format=None):
-        """
-        Return a list of all customers.
-        """
-        customers = Customer.objects.all()
-        if customers:
-            serializer = CustomerSerializer(customers, many=True)
-            return Response(serializer.data)
-        return Response("No data!")
+    try:
+        queryset = Customer.objects.all()
+        serializer_class = CustomerSerializer
+    except Exception as error:
+        print(error)
+
+class CustomerDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Returns a single Customer and allows updates and deletion of a Customer.
+    """
+    try:
+        queryset = Customer.objects.all()
+        serializer_class = CustomerSerializer
+        lookup_url_kwarg = 'customer_id'
+    except Exception as error:
+        print(error)
