@@ -76,9 +76,9 @@ export class InvoicesAppService {
     });
   }
 
-  public deleteInvoice(invoiceId: number): any {
+  public deleteInvoice(invoiceID: number): any {
     return new Promise((resolve, reject) => {
-      this.http.delete(this.BASE_URL + '/invoices/' + invoiceId + "/", { headers: { 'Content-Type': 'application/json'}})
+      this.http.delete(this.BASE_URL + '/invoices/' + invoiceID + "/", { headers: { 'Content-Type': 'application/json'}})
         .subscribe(response => {
           resolve(response);
         }, error => {

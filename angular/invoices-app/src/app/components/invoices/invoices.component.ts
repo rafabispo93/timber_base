@@ -34,7 +34,7 @@ export class InvoicesComponent implements OnInit {
     });
   }
  
-  openDialog(action,obj) {
+  openDialog(action,obj): void {
     obj.action = action;
     const dialogRef = this.dialog.open(DialogBoxComponent, {
       width: '450px',
@@ -52,7 +52,7 @@ export class InvoicesComponent implements OnInit {
     });
   }
  
-  addRowData(row_obj){
+  addRowData(row_obj): void {
     console.log(row_obj, "Row");
     // var d = new Date();
     this.dataSource.push({
@@ -65,7 +65,8 @@ export class InvoicesComponent implements OnInit {
     this.table.renderRows();
     
   }
-  updateRowData(row_obj){
+
+  updateRowData(row_obj): void {
     this.dataSource = this.dataSource.filter((value,key)=>{
       if(value.id == row_obj.id){
         value.id = row_obj.id;
@@ -75,11 +76,15 @@ export class InvoicesComponent implements OnInit {
       return true;
     });
   }
-  deleteRowData(row_obj){
+
+  deleteRowData(row_obj): void{
     this.dataSource = this.dataSource.filter((value,key)=>{
       return value.id != row_obj.id;
     });
   }
 
+  public generatePdf(invoiceID: number): void {
+    window.open("http://0.0.0.0:8000/api/invoices/pdf/" + invoiceID + "/", "_blank");
+  }
 
 }
