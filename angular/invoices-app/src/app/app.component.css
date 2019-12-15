@@ -1,0 +1,9 @@
+.link {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.nav-tool-items {
+    position: absolute;
+    right: 1%;
+}
