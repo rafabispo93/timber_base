@@ -21,7 +21,7 @@ export class InvoicesAppService {
     });
   }
 
-  public postCustomer(data): any {
+  public postCustomer(data: any): any {
     return new Promise((resolve, reject) => {
       this.http.post(this.BASE_URL + '/customer/', data, { headers: { 'Content-Type': 'application/json'}})
         .subscribe(response => {
@@ -32,7 +32,7 @@ export class InvoicesAppService {
     });
   }
 
-  public login(data): any {
+  public login(data: any): any {
     return new Promise((resolve, reject) => {
       this.http.post(this.BASE_URL + '/customer/login/', data, { headers: { 'Content-Type': 'application/json'}})
         .subscribe(response => {
@@ -46,6 +46,39 @@ export class InvoicesAppService {
   public getInvoices(): any {
     return new Promise((resolve, reject) => {
       this.http.get(this.BASE_URL + '/invoices/customer/' + localStorage.getItem("user_id") + "/", { headers: { 'Content-Type': 'application/json'}})
+        .subscribe(response => {
+          resolve(response);
+        }, error => {
+          resolve(error);
+        });
+    });
+  }
+
+  public postInvoice(data: any): any {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.BASE_URL + '/invoices/', data, { headers: { 'Content-Type': 'application/json'}})
+        .subscribe(response => {
+          resolve(response);
+        }, error => {
+          resolve(error);
+        });
+    });
+  }
+
+  public updateInvoice(data: any, invoiceId: number): any {
+    return new Promise((resolve, reject) => {
+      this.http.put(this.BASE_URL + '/invoices/' + invoiceId + "/", data, { headers: { 'Content-Type': 'application/json'}})
+        .subscribe(response => {
+          resolve(response);
+        }, error => {
+          resolve(error);
+        });
+    });
+  }
+
+  public deleteInvoice(invoiceId: number): any {
+    return new Promise((resolve, reject) => {
+      this.http.delete(this.BASE_URL + '/invoices/' + invoiceId + "/", { headers: { 'Content-Type': 'application/json'}})
         .subscribe(response => {
           resolve(response);
         }, error => {

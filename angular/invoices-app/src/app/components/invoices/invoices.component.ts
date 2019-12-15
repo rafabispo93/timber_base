@@ -10,7 +10,7 @@ export interface InvoicesData {
   id: number;
   address: string;
   date: string;
-  value: number;
+  total: number;
 }
 
 @Component({
@@ -31,13 +31,13 @@ export class InvoicesComponent implements OnInit {
     this.api.getInvoices().then((response: any) => {
       console.log(response);
       this.dataSource = response;
-    })
+    });
   }
  
   openDialog(action,obj) {
     obj.action = action;
     const dialogRef = this.dialog.open(DialogBoxComponent, {
-      width: '250px',
+      width: '450px',
       data:obj
     });
  
@@ -53,18 +53,24 @@ export class InvoicesComponent implements OnInit {
   }
  
   addRowData(row_obj){
+    console.log(row_obj, "Row");
     // var d = new Date();
-    // this.dataSource.push({
-    //   id:d.getTime(),
-    //   name:row_obj.name
-    // });
-    // this.table.renderRows();
+    this.dataSource.push({
+      id: row_obj.id,
+      address: row_obj.address,
+      total: row_obj.total,
+      created_on: row_obj.created_on
+    });
+
+    this.table.renderRows();
     
   }
   updateRowData(row_obj){
     this.dataSource = this.dataSource.filter((value,key)=>{
       if(value.id == row_obj.id){
         value.id = row_obj.id;
+        value.address = row_obj.address;
+        value.total = row_obj.total;
       }
       return true;
     });

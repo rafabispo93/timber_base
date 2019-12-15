@@ -21,3 +21,16 @@ class Customer(models.Model):
     # Define what to output when the model is printed as a string.
     def __str__(self):
         return self.email
+
+class Invoice(models.Model):
+    address = models.CharField(max_length=100)
+    created_on = models.DateField(default=date.today)
+    total = models.FloatField()
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+
+    # Meta data about the database table.
+    class Meta:
+        db_table = 'invoice'
+
+        # Set default ordering
+        ordering = ['id']
