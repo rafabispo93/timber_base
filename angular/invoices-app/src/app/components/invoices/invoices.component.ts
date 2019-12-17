@@ -29,8 +29,9 @@ export class InvoicesComponent implements OnInit {
 
   ngOnInit() {
     this.api.getInvoices().then((response: any) => {
-      console.log(response);
-      this.dataSource = response;
+      if (typeof response !== "string"){
+        this.dataSource = response;
+      }
     });
   }
  
@@ -84,7 +85,7 @@ export class InvoicesComponent implements OnInit {
   }
 
   public generatePdf(invoiceID: number): void {
-    window.open("http://0.0.0.0:8000/api/invoices/pdf/" + invoiceID + "/", "_blank");
+    window.open("http://34.70.104.228:8000/api/invoices/pdf/" + invoiceID + "/", "_blank");
   }
 
 }
