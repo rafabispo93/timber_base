@@ -6,7 +6,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class InvoicesAppService {
 
-  private BASE_URL: string = "http://0.0.0.0:8000/api";
+  private BASE_URL: string = "http://34.66.238.239:8000/api";
 
   constructor(private http:HttpClient) { }
 
