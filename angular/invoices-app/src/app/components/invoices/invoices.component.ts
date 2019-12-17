@@ -21,7 +21,7 @@ export interface InvoicesData {
 export class InvoicesComponent implements OnInit {
   
   displayedColumns: string[] = ['id', 'address', 'date', "total",'action'];
-  public dataSource;
+  public dataSource = [];
   
   @ViewChild(MatTable,{static:true}) table: MatTable<any>;
   
