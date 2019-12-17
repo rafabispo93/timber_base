@@ -72,6 +72,7 @@ class InvoiceExtra(APIView):
             if invoices:
                 serializer = InvoiceSerializer(invoices, many=True)
                 return Response(serializer.data, status=status.HTTP_200_OK)
+            return Response("No data!")
         except Invoice.DoesNotExist:
             raise Http404
 

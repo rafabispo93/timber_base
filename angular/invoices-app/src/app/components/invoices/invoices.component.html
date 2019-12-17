@@ -3,7 +3,7 @@
  
     <button mat-button (click)="openDialog('Add',{})" mat-flat-button color="accent" class="add-button">Add Invoice</button>
     
-    <table mat-table [dataSource]="dataSource" #mytable class="invoices-table mat-elevation-z8">
+    <table *ngIf="dataSource" mat-table [dataSource]="dataSource" #mytable class="invoices-table mat-elevation-z8">
     
         <!--- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->
